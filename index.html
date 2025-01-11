@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full Screen WidgetBot</title>
+    <title>WidgetBot Embed</title>
     <style>
         html, body {
             margin: 0;
@@ -17,40 +17,21 @@
             height: 100%;
             position: relative; /* Ensure proper positioning */
         }
-        .loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-            color: #333; /* Loading text color */
-        }
     </style>
 </head>
 <body>
-    <div class="widget-container">
-        <div class="loading">Loading WidgetBot...</div>
-        <iframe src="https://e.widgetbot.io/channels/1327413370223333479/1327414346325950536" 
-                allow="clipboard-write; fullscreen" 
-                height="100%" 
-                width="100%" 
-                style="border: none;"></iframe>
-    </div>
+    <div class="widget-container" id="widgetbot"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3" async defer></script>
     <script>
-        // Hide loading message once the iframe has loaded
-        const loadingMessage = document.querySelector('.loading');
-        const iframe = document.querySelector('iframe');
-
-        iframe.onload = function() {
-            loadingMessage.style.display = 'none'; // Hide loading message
-            console.log('WidgetBot iframe has loaded successfully');
-        };
-
-        // Error handling for the iframe
-        iframe.onerror = function() {
-            loadingMessage.textContent = 'Failed to load WidgetBot. Please check the server and channel IDs.';
-            console.error('Error loading WidgetBot iframe');
-        };
+        new Crate({
+            server: '1327413370223333479', // Your server ID
+            channel: '1327414346325950536', // Your channel ID
+            target: '#widgetbot', // Target the div where the widget will be embedded
+            width: '100%', // Set width to 100%
+            height: '100%', // Set height to 100%
+        });
     </script>
 </body>
 </html>
+
